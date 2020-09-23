@@ -5,5 +5,5 @@ import 'package:plato.cap/src/forms/cap_form.dart';
 /// The [FormativeForm] class...
 class FormativeForm extends CapForm {
   /// The [FormativeForm] constructor...
-  FormativeForm();
+  FormativeForm (String name, DateTime date) : super (name, date);
 }
