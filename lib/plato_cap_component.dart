@@ -1,3 +1,5 @@
+library plato.cap.component;
+
 import 'package:angular/angular.dart';
 
 @Component(
@@ -6,5 +8,5 @@ import 'package:angular/angular.dart';
   templateUrl: 'plato_cap_component.html'
 )
 class PlatoCapComponent {
-  // Nothing here yet. All logic is in TodoListComponent.
+  // Nothing here yet.
 }

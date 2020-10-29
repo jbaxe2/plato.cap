@@ -1,0 +1,15 @@
+<div>
+  <p>
+    Click the button below to authorize the <strong>Plato CAP Formative and
+    Summative Review</strong> application to review CAP forms on your behalf.
+    <br><br>
+
+    Authorization may require logging into Plato (upon redirect) and clicking
+    'Allow' on the next page (this happens only once).  After you will be brought
+    back here to continue with the CAP forms review.
+  </p>
+
+  <material-button raised [disabled]="isAuthorized" (trigger)="authorize()">
+    <material-icon icon="how_to_reg"></material-icon> &nbsp; Authorize for CAP
+  </material-button>
+</div>

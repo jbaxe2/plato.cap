@@ -1,5 +1,11 @@
 # Plato CAP Summative and Formative Review Changelog
 
+## 0.1.0
+- Start of creating components and services, as well as work on other domain
+models.
+- Focus on the patron component and associated aspects, including service and
+exception.
+
 ## 0.0.2
 - Working out some required models for the domain, and associated components.
 
