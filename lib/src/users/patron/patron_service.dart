@@ -1,11 +1,12 @@
 library plato.cap.services.user.patron;
 
 import 'dart:html' show window;
-import 'dart:convert' show json, utf8;
 
-import 'package:http/http.dart' show Client, Response;
+import 'package:http/http.dart' show Client;
 
-import 'package:plato.cap/src/users/patron/patron_exception.dart';
+import 'package:plato.cap/src/_utility/functions.dart';
+import 'package:plato.cap/src/users/patron/improper_patron.dart';
+import 'package:plato.cap/src/users/patron/patron_factory.dart';
 import 'package:plato.cap/src/users/patron/patron_user.dart';
 
 const String _LEARN_AUTH_URI = '/plato/authenticate/learn';
@@ -20,13 +21,15 @@ final String _REST_AUTH_URI =
 
 /// The [PatronService] class...
 class PatronService {
-  PatronUser patron;
+  PatronUser _patron;
 
   bool _isAuthorized;
 
-  bool get isAuthorized => _isAuthorized;
-
   bool _isLtiSession;
+
+  PatronUser get patron => _patron;
+
+  bool get isAuthorized => _isAuthorized;
 
   bool get isLtiSession => _isLtiSession;
 
@@ -50,7 +53,7 @@ class PatronService {
       var response = await _http.get (_SESSION_URI);
 
       Map<String, String> rawSession =
-        (json.decode (utf8.decode (response.bodyBytes)) as Map)['session'];
+        (decodeResponse (response) as Map)['session'];
 
       if ((rawSession.containsKey ('plato.session.exists')) &&
           (rawSession.containsKey ('learn.user.authenticated'))) {
@@ -64,7 +67,66 @@ class PatronService {
         }
       }
     } catch (_) {
-      throw PatronException ('Unable to determine if a session exists.');
+      throw ImproperPatron ('Unable to determine if a session exists.');
+    }
+  }
+
+  /// The [authorizeApplication] method...
+  void authorizeApplication() {
+    if (_isAuthorized) {
+      return;
+    }
+
+    window.location.replace (_REST_AUTH_URI);
+  }
+
+  /// The [authorizePatron] method...
+  Future<bool> authorizePatron() async {
+    if (_isAuthorized) {
+      return true;
+    }
+
+    var location = Uri.parse (window.location.href);
+
+    if (location.queryParameters.containsKey ('code')) {
+      try {
+        var response = await _http.post (
+          Uri.parse (_LEARN_AUTH_URI),
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          body: {'authCode': location.queryParameters['code']}
+        );
+
+        Map<String, dynamic> result = decodeResponse (response);
+
+        if (true == result['learn.user.authenticated']) {
+          _isAuthorized = true;
+        } else {
+          throw result;
+        }
+      } catch (_) {
+        throw ImproperPatron ('Patron authorization has failed.');
+      }
+
+      return true;
+    }
+
+    return false;
+  }
+
+  /// The [retrievePatron] method...
+  Future<void> retrievePatron() async {
+    if (!_isAuthorized) {
+      throw ImproperPatron ('Cannot retrieve info for unauthorized patron.');
+    }
+
+    try {
+      var response = await _http.get (_USER_URI);
+
+      Map<String, String> rawPatron = decodeResponse (response);
+
+      _patron = PatronFactory.create (rawPatron);
+    } catch (_) {
+      throw ImproperPatron ('Unable to retrieve the patron info.');
     }
   }
 }

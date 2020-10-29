@@ -8,6 +8,8 @@ abstract class Enrollment {
 
   final String role;
 
+  final bool available;
+
   /// The [Enrollment] constructor...
-  Enrollment (this.courseId, this.userId, this.role);
+  Enrollment (this.courseId, this.userId, this.role, this.available);
 }

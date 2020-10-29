@@ -1,5 +1,8 @@
 # Plato CAP Summative and Formative Review Changelog
 
+## 0.2.0
+- Start of creating enrollments service and associated aspects.
+
 ## 0.1.0
 - Start of creating components and services, as well as work on other domain
 models.
