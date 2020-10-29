@@ -2,7 +2,7 @@ library plato.cap.services.enrollments;
 
 import 'package:http/http.dart' show Client;
 
-import 'package:plato.cap/src/_utility/functions.dart';
+import 'package:plato.cap/src/_application/_utility/functions.dart';
 import 'package:plato.cap/src/enrollments/enrollment.dart';
 import 'package:plato.cap/src/enrollments/improper_enrollment.dart';
 import 'package:plato.cap/src/enrollments/patron_enrollments.dart';

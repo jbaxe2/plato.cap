@@ -4,7 +4,7 @@ import 'dart:html' show window;
 
 import 'package:http/http.dart' show Client;
 
-import 'package:plato.cap/src/_utility/functions.dart';
+import 'package:plato.cap/src/_application/_utility/functions.dart';
 import 'package:plato.cap/src/users/patron/improper_patron.dart';
 import 'package:plato.cap/src/users/patron/patron_factory.dart';
 import 'package:plato.cap/src/users/patron/patron_user.dart';
