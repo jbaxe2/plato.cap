@@ -1,5 +1,8 @@
 # Plato CAP Summative and Formative Review Changelog
 
+## 0.3.1
+- Work on rosters and enrollments.
+
 ## 0.3.0
 - Start of creating roster and groups services.
 

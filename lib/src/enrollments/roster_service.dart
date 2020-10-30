@@ -21,6 +21,13 @@ class RosterService {
 
   /// The [loadRosterForCourse] method...
   Future<void> loadRosterForCourse (String courseId) async {
-    ;
+    if (_checkIfHaveRoster (courseId)) {
+      return;
+    }
+  }
+
+  /// The [_checkIfHaveRoster] method...
+  bool _checkIfHaveRoster (String courseId) {
+    return _rosters.any ((Roster roster) => roster.courseId == courseId);
   }
 }
