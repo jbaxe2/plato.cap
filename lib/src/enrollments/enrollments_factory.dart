@@ -6,7 +6,20 @@ import 'package:plato.cap/src/enrollments/improper_enrollment.dart';
 /// The [EnrollmentsFactory] class...
 abstract class EnrollmentsFactory {
   /// The [createForPatron] static method...
-  static PatronEnrollment createForPatron (Map<String, String> rawEnrollment) {
+  static List<PatronEnrollment> createForPatron (
+    List<Map<String, String>> rawEnrollments
+  ) {
+    var enrollments = <PatronEnrollment>[];
+
+    rawEnrollments.forEach ((rawEnrollment) => enrollments.add (
+      EnrollmentsFactory.createPatronEnrollment (rawEnrollment)
+    ));
+
+    return enrollments;
+  }
+
+  /// The [createPatronEnrollment] static method...
+  static PatronEnrollment createPatronEnrollment (Map<String, String> rawEnrollment) {
     if (!EnrollmentsFactory._checkRawEnrollmentInfo (rawEnrollment)) {
       throw ImproperEnrollment ('Invalid info to create the patron enrollment.');
     }

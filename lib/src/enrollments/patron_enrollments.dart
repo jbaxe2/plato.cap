@@ -8,19 +8,26 @@ import 'package:plato.cap/src/users/patron/patron_user.dart';
 class PatronEnrollments {
   final PatronUser patronUser;
 
-  final List<Enrollment> enrollments;
+  List<PatronEnrollment> _enrollments;
+
+  List<PatronEnrollment> get enrollments =>
+    List<PatronEnrollment>.from (_enrollments);
 
   /// The [PatronEnrollments] constructor...
-  PatronEnrollments (this.patronUser, this.enrollments) {
+  PatronEnrollments (this.patronUser, List<PatronEnrollment> enrollments) {
     if (!_checkEnrollmentsForPatron()) {
       throw ImproperEnrollment (
         'One or more of the enrollments users does not match the patron.'
       );
     }
+
+    enrollments.removeWhere ((enrollment) => !enrollment.courseId.contains ('cap'));
+
+    _enrollments = enrollments;
   }
 
   /// The [_checkEnrollmentsForPatron] method...
-  bool _checkEnrollmentsForPatron() => enrollments.every (
+  bool _checkEnrollmentsForPatron() => _enrollments.every (
     (Enrollment enrollment) => enrollment.userId == patronUser.userId
   );
 }

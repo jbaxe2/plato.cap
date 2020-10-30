@@ -1,7 +1,13 @@
 library plato.cap.services.roster;
 
 import 'package:http/http.dart' show Client;
+
+import 'package:plato.cap/src/_application/_utility/functions.dart';
+import 'package:plato.cap/src/enrollments/improper_roster.dart';
 import 'package:plato.cap/src/enrollments/roster.dart';
+import 'package:plato.cap/src/enrollments/roster_factory.dart';
+
+const String _ROSTER_URI = '/plato/retrieve/roster';
 
 /// The [RosterService] class...
 class RosterService {
@@ -23,6 +29,17 @@ class RosterService {
   Future<void> loadRosterForCourse (String courseId) async {
     if (_checkIfHaveRoster (courseId)) {
       return;
+    }
+
+    try {
+      var response = await _http.get (_ROSTER_URI);
+
+      List<Map<String, String>> rawRoster =
+        (decodeResponse (response) as Map)['roster'];
+
+      _rosters.add (RosterFactory.create (courseId, rawRoster));
+    } catch (_) {
+      throw ImproperRoster ('Unable to retrieve the course roster.');
     }
   }
 

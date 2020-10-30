@@ -3,7 +3,7 @@ library plato.cap.services.enrollments;
 import 'package:http/http.dart' show Client;
 
 import 'package:plato.cap/src/_application/_utility/functions.dart';
-import 'package:plato.cap/src/enrollments/enrollment.dart';
+import 'package:plato.cap/src/enrollments/enrollments_factory.dart';
 import 'package:plato.cap/src/enrollments/improper_enrollment.dart';
 import 'package:plato.cap/src/enrollments/patron_enrollments.dart';
 import 'package:plato.cap/src/users/patron/patron_user.dart';
@@ -35,14 +35,11 @@ class EnrollmentsService {
       List<Map<String, String>> rawEnrollments =
         (decodeResponse (response) as Map)['enrollments'];
 
-      _enrollments = PatronEnrollments (patron, _parseEnrollments (rawEnrollments));
+      _enrollments = PatronEnrollments (
+        patron, EnrollmentsFactory.createForPatron (rawEnrollments)
+      );
     } catch (_) {
       throw ImproperEnrollment ('Unable to retrieve the enrollments.');
     }
-  }
-
-  /// The [_parseEnrollments] method...
-  List<Enrollment> _parseEnrollments (List<Map<String, String>> rawEnrollments) {
-    return <Enrollment>[];
   }
 }

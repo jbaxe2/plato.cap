@@ -6,7 +6,7 @@ import 'package:plato.cap/src/enrollments/enrollment.dart';
 class Roster {
   final String courseId;
 
-  final List<Enrollment> enrollments;
+  final List<RosterEnrollment> enrollments;
 
   /// The [Roster] constructor...
   Roster (this.courseId, this.enrollments);
