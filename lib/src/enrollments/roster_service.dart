@@ -11,9 +11,9 @@ const String _ROSTER_URI = '/plato/retrieve/roster';
 
 /// The [RosterService] class...
 class RosterService {
-  List<Roster> _rosters;
+  Map<String, Roster> _rosters;
 
-  List<Roster> get rosters => List<Roster>.from (_rosters);
+  Map<String, Roster> get rosters => Map<String, Roster>.from (_rosters);
 
   final Client _http;
 
@@ -27,7 +27,7 @@ class RosterService {
 
   /// The [loadRosterForCourse] method...
   Future<void> loadRosterForCourse (String courseId) async {
-    if (_checkIfHaveRoster (courseId)) {
+    if (_rosters.containsKey (courseId)) {
       return;
     }
 
@@ -37,14 +37,18 @@ class RosterService {
       List<Map<String, String>> rawRoster =
         (decodeResponse (response) as Map)['roster'];
 
-      _rosters.add (RosterFactory.create (courseId, rawRoster));
+      _rosters[courseId] = RosterFactory.create (courseId, rawRoster);
     } catch (_) {
       throw ImproperRoster ('Unable to retrieve the course roster.');
     }
   }
 
-  /// The [_checkIfHaveRoster] method...
-  bool _checkIfHaveRoster (String courseId) {
-    return _rosters.any ((Roster roster) => roster.courseId == courseId);
+  /// The [getRosterForCourse] method...
+  Future<Roster> getRosterForCourse (String courseId) async {
+    if (!_rosters.containsKey (courseId)) {
+      await loadRosterForCourse (courseId);
+    }
+
+    return _rosters[courseId];
   }
 }
