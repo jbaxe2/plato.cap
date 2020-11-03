@@ -4,6 +4,8 @@ import 'package:http/http.dart' show Client;
 
 import 'package:plato.cap/src/group/group.dart';
 
+const String _GROUPS_URI = '/plato/retrieve/groups';
+
 /// The [GroupsService] class...
 class GroupsService {
   Map<String, List<Group>> _groups;

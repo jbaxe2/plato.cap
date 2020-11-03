@@ -1,5 +1,8 @@
 # Plato CAP Summative and Formative Review Changelog
 
+## 0.3.2
+- Work on various components.
+
 ## 0.3.1+1
 - Added some functionality to the roster service.
 

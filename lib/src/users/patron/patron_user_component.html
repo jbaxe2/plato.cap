@@ -1,0 +1,9 @@
+<div>
+  <div *ngIf="!isAuthorized">
+    <patron-authorization></patron-authorization>
+  </div>
+
+  <div *ngIf="isAuthorized">
+    <p>Welcome, <strong>{{patron.firstName}} {{patron.lastName}}!</strong></p>
+  </div>
+</div>

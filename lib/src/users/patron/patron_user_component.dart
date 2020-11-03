@@ -1,2 +1,33 @@
 library plato.cap.components.user.patron;
 
+import 'package:angular/angular.dart';
+import 'package:angular_components/angular_components.dart';
+import 'package:plato.cap/src/users/patron/patron_authorization_component.dart';
+
+import 'package:plato.cap/src/users/patron/patron_service.dart';
+import 'package:plato.cap/src/users/patron/patron_user.dart';
+
+/// The [PatronUserComponent] class...
+@Component(
+  selector: 'patron-user',
+  templateUrl: 'patron_user_component.html',
+  directives: [
+    materialProviders,
+    PatronAuthorizationComponent
+  ],
+  providers: [PatronService]
+)
+class PatronUserComponent implements OnInit {
+  PatronUser get patron => _patronService.patron;
+
+  bool get isAuthorized => _patronService.isAuthorized;
+
+  final PatronService _patronService;
+
+  /// The [PatronUserComponent] constructor...
+  PatronUserComponent (this._patronService);
+
+  /// The [ngOnInit] method...
+  @override
+  void ngOnInit() {}
+}

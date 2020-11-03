@@ -3,6 +3,7 @@ library plato.cap.components.user.patron.authorization;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
+import 'package:plato.cap/src/enrollments/enrollments_service.dart';
 import 'package:plato.cap/src/users/patron/patron_service.dart';
 
 /// The [PatronAuthorizationComponent] class...
@@ -21,8 +22,10 @@ class PatronAuthorizationComponent implements OnInit {
 
   final PatronService _patronService;
 
+  final EnrollmentsService _enrollmentsService;
+
   /// The [PatronAuthorizationComponent] constructor...
-  PatronAuthorizationComponent (this._patronService);
+  PatronAuthorizationComponent (this._patronService, this._enrollmentsService);
 
   /// The [ngOnInit] method...
   @override
@@ -32,7 +35,7 @@ class PatronAuthorizationComponent implements OnInit {
       await _patronService.authorizePatron();
 
       if (isAuthorized) {
-        await _patronService.retrievePatron();
+        await _retrievePatronAndEnrollments();
       }
     } catch (_) {}
   }
@@ -42,9 +45,17 @@ class PatronAuthorizationComponent implements OnInit {
     try {
       if (!isAuthorized) {
         _patronService.authorizeApplication();
+      } else {
+        await _retrievePatronAndEnrollments();
       }
-
-      await _patronService.retrievePatron();
     } catch (_) {}
+  }
+
+  /// The [_retrievePatronAndEnrollments] method...
+  Future<void> _retrievePatronAndEnrollments() async {
+    if (isAuthorized) {
+      await _patronService.retrievePatron();
+      await _enrollmentsService.retrieveEnrollments (_patronService.patron);
+    }
   }
 }

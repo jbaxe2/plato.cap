@@ -7,7 +7,7 @@ import 'package:plato.cap/src/enrollments/improper_roster.dart';
 import 'package:plato.cap/src/enrollments/roster.dart';
 import 'package:plato.cap/src/enrollments/roster_factory.dart';
 
-const String _ROSTER_URI = '/plato/retrieve/roster';
+const String _ROSTER_URI = '/plato/retrieve/roster/students';
 
 /// The [RosterService] class...
 class RosterService {
