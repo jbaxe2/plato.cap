@@ -1,0 +1,19 @@
+<div>
+  <p *ngIf="enrollments.enrollments.isEmpty">
+    CAP enrollments have not yet been loaded.
+  </p>
+
+  <div *ngIf="enrollments.enrollments.isNotEmpty">
+    <p>Please select a CAP enrollment to review the forms.</p>
+
+    <material-radio-group
+        [ngModel]="selectedEnrollment"
+        (ngModelChange)="enrollmentSelected($event)">
+      <span *ngFor="let enrollment of enrollments.enrollments">
+        <material-radio [value]="enrollment">
+          {{enrollment.courseName}}
+        </material-radio>
+      </span>
+    </material-radio-group>
+  </div>
+</div>

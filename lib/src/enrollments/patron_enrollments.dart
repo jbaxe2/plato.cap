@@ -13,6 +13,8 @@ class PatronEnrollments {
   List<PatronEnrollment> get enrollments =>
     List<PatronEnrollment>.from (_enrollments);
 
+  PatronEnrollment selectedEnrollment;
+
   /// The [PatronEnrollments] constructor...
   PatronEnrollments (this.patronUser, List<PatronEnrollment> enrollments) {
     if (!_checkEnrollmentsForPatron()) {

@@ -25,7 +25,8 @@ abstract class EnrollmentsFactory {
     }
 
     return PatronEnrollment (
-      rawEnrollment['learn.course.id'], rawEnrollment['banner.user.cwid'],
+      rawEnrollment['learn.course.id'], rawEnrollment['learn.course.name'],
+      rawEnrollment['banner.user.cwid'],
       ('true' == rawEnrollment['learn.membership.available'])
     );
   }
@@ -52,7 +53,8 @@ abstract class EnrollmentsFactory {
     }
 
     return RosterEnrollment (
-      rawEnrollment['learn.course.id'], rawEnrollment['banner.user.cwid'],
+      rawEnrollment['learn.course.id'], rawEnrollment['learn.course.name'],
+      rawEnrollment['banner.user.cwid'],
       ('true' == rawEnrollment['learn.membership.available'])
     );
   }
