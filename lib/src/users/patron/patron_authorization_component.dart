@@ -3,6 +3,7 @@ library plato.cap.components.user.patron.authorization;
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
+import 'package:plato.cap/src/_application/progress/progress_service.dart';
 import 'package:plato.cap/src/enrollments/enrollments_service.dart';
 import 'package:plato.cap/src/users/patron/patron_service.dart';
 
@@ -15,7 +16,7 @@ import 'package:plato.cap/src/users/patron/patron_service.dart';
     materialInputDirectives,
     MaterialButtonComponent, MaterialIconComponent
   ],
-  providers: [PatronService]
+  providers: [EnrollmentsService, PatronService, ProgressService]
 )
 class PatronAuthorizationComponent implements OnInit {
   bool get isAuthorized => _patronService.isAuthorized;
@@ -24,13 +25,19 @@ class PatronAuthorizationComponent implements OnInit {
 
   final EnrollmentsService _enrollmentsService;
 
+  final ProgressService _progressService;
+
   /// The [PatronAuthorizationComponent] constructor...
-  PatronAuthorizationComponent (this._patronService, this._enrollmentsService);
+  PatronAuthorizationComponent (
+    this._patronService, this._enrollmentsService, this._progressService
+  );
 
   /// The [ngOnInit] method...
   @override
   Future<void> ngOnInit() async {
     try {
+      _progressService.invoke ('Determining launch context.');
+
       await _patronService.retrieveSession();
       await _patronService.authorizePatron();
 
@@ -38,6 +45,8 @@ class PatronAuthorizationComponent implements OnInit {
         await _retrievePatronAndEnrollments();
       }
     } catch (_) {}
+
+    _progressService.revoke();
   }
 
   /// The [authorize] method...
@@ -54,7 +63,10 @@ class PatronAuthorizationComponent implements OnInit {
   /// The [_retrievePatronAndEnrollments] method...
   Future<void> _retrievePatronAndEnrollments() async {
     if (isAuthorized) {
+      _progressService.invoke ('Retrieving the patron information.');
       await _patronService.retrievePatron();
+
+      _progressService.invoke ('Retrieving the patron enrollments.');
       await _enrollmentsService.retrieveEnrollments (_patronService.patron);
     }
   }

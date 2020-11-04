@@ -1,6 +1,7 @@
 library plato.cap.components.group;
 
 import 'package:angular/angular.dart';
+
 import 'package:plato.cap/src/group/groups_service.dart';
 
 /// The [GroupComponent] class...

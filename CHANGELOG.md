@@ -1,5 +1,9 @@
 # Plato CAP Summative and Formative Review Changelog
 
+## 0.4.0
+- Added caching, error, and progress services and components.
+- Work on groups.
+
 ## 0.3.2
 - Work on various components.
 
