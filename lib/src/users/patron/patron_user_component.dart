@@ -17,7 +17,7 @@ import 'package:plato.cap/src/users/patron/patron_user.dart';
   ],
   providers: [PatronService]
 )
-class PatronUserComponent implements OnInit {
+class PatronUserComponent implements AfterViewInit {
   PatronUser get patron => _patronService.patron;
 
   bool get isAuthorized => _patronService.isAuthorized;
@@ -27,7 +27,7 @@ class PatronUserComponent implements OnInit {
   /// The [PatronUserComponent] constructor...
   PatronUserComponent (this._patronService);
 
-  /// The [ngOnInit] method...
+  /// The [ngAfterViewInit] method...
   @override
-  void ngOnInit() {}
+  void ngAfterViewInit() {}
 }

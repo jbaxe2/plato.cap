@@ -1,0 +1,10 @@
+<div>
+  <p>Please select a form type to review.</p>
+
+  <material-radio-group
+      [ngModel]="selectedFormType"
+      (ngModelChange)="formTypeSelected($event)">
+    <material-radio [value]="formative">Formative</material-radio>
+    <material-radio [value]="summative">Summative</material-radio>
+  </material-radio-group>
+</div>

@@ -18,7 +18,7 @@ import 'package:plato.cap/src/users/patron/patron_service.dart';
   ],
   providers: [EnrollmentsService, PatronService, ProgressService]
 )
-class PatronAuthorizationComponent implements OnInit {
+class PatronAuthorizationComponent implements AfterViewInit {
   bool get isAuthorized => _patronService.isAuthorized;
 
   final PatronService _patronService;
@@ -32,9 +32,9 @@ class PatronAuthorizationComponent implements OnInit {
     this._patronService, this._enrollmentsService, this._progressService
   );
 
-  /// The [ngOnInit] method...
+  /// The [ngAfterViewInit] method...
   @override
-  Future<void> ngOnInit() async {
+  Future<void> ngAfterViewInit() async {
     try {
       _progressService.invoke ('Determining launch context.');
 

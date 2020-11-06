@@ -17,7 +17,7 @@ import 'package:plato.cap/src/_application/error/plato_exception.dart';
   ],
   providers: [ErrorService]
 )
-class ErrorComponent implements OnInit {
+class ErrorComponent implements AfterViewInit {
   String error;
 
   bool showError;
@@ -27,9 +27,9 @@ class ErrorComponent implements OnInit {
   /// The [ErrorComponent] constructor...
   ErrorComponent (this._errorService);
 
-  /// The [ngOnInit] method...
+  /// The [ngAfterViewInit] method...
   @override
-  void ngOnInit() {
+  void ngAfterViewInit() {
     error = 'No errors have occurred.';
     showError = _errorService.errorRaised;
 

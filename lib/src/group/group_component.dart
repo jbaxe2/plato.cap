@@ -5,13 +5,13 @@ import 'package:angular/angular.dart';
 import 'package:plato.cap/src/group/groups_service.dart';
 
 /// The [GroupComponent] class...
-class GroupComponent implements OnInit {
+class GroupComponent implements AfterViewInit {
   final GroupsService _groupsService;
 
   /// The [GroupComponent] constructor...
   GroupComponent (this._groupsService);
 
-  /// The [ngOnInit] method...
+  /// The [ngAfterViewInit] method...
   @override
-  void ngOnInit() {}
+  void ngAfterViewInit() {}
 }

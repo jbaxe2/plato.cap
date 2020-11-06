@@ -16,7 +16,7 @@ import 'package:plato.cap/src/_application/progress/progress_service.dart';
   ],
   providers: [ProgressService, popupBindings]
 )
-class ProgressComponent implements OnInit {
+class ProgressComponent implements AfterViewInit {
   bool isVisible;
 
   String message;
@@ -31,9 +31,9 @@ class ProgressComponent implements OnInit {
     [this._defaultMessage = '(There is no current message to display.)']
   );
 
-  /// The [ngOnInit] method...
+  /// The [ngAfterViewInit] method...
   @override
-  void ngOnInit() {
+  void ngAfterViewInit() {
     _progressService.messageStreamController.stream.listen (
       (String theMessage) {
         message = theMessage ?? _defaultMessage;

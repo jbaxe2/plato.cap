@@ -1,5 +1,9 @@
 # Plato CAP Summative and Formative Review Changelog
 
+## 0.4.1
+- Changed components from using Angular's on init to after view init.
+- Added a form type selector component.
+
 ## 0.4.0+1
 - Work on related aspects of enrollments.
 
