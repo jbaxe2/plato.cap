@@ -10,18 +10,18 @@ class SimpleRegistry implements Registry<String, Object> {
   static SimpleRegistry _instance;
 
   /// The [SimpleRegistry] factory constructor...
-  factory SimpleRegistry() => _instance ?? (_instance = new SimpleRegistry._());
+  factory SimpleRegistry() => _instance ?? (_instance = SimpleRegistry._());
 
   /// The [SimpleRegistry] private constructor...
   SimpleRegistry._() {
-    _registry = new Map<String, Object>();
+    _registry = <String, Object>{};
   }
 
   /// The [register] method...
   @override
   void register (String key, covariant Object resource) {
     if (_registry.containsKey (key)) {
-      throw new ImproperRegistryEntry (
+      throw ImproperRegistryEntry (
         'Unable to register a value that has already been registered.'
       );
     }
@@ -40,7 +40,7 @@ class SimpleRegistry implements Registry<String, Object> {
       return _registry[key];
     }
 
-    throw new ImproperRegistryEntry (
+    throw ImproperRegistryEntry (
       'Unable to retrieve the value from the registry when it has not been added.'
     );
   }
@@ -51,7 +51,7 @@ class SimpleRegistry implements Registry<String, Object> {
     dynamic oldResource;
 
     if (!_registry.containsKey (key)) {
-      throw new ImproperRegistryEntry (
+      throw ImproperRegistryEntry (
         'Unable to refresh a registry entry value when that entry does not exist.'
       );
     } else {

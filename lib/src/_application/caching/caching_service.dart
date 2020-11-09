@@ -4,15 +4,17 @@ import 'package:plato.cap/src/_application/caching/simple_registry.dart';
 
 /// The [CachingService] class...
 class CachingService {
-  static final SimpleRegistry _simpleRegistry = new SimpleRegistry();
+  SimpleRegistry _simpleRegistry;
 
   static CachingService _instance;
 
   /// The [CachingService] factory constructor...
-  factory CachingService() => _instance ?? (_instance = new CachingService._());
+  factory CachingService() => _instance ?? (_instance = CachingService._());
 
   /// The [CachingService] private constructor...
-  CachingService._();
+  CachingService._() {
+    _simpleRegistry = SimpleRegistry();
+  }
 
   /// The [cacheObject] method...
   void cacheObject (String key, Object object) {

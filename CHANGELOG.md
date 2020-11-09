@@ -1,5 +1,10 @@
 # Plato CAP Summative and Formative Review Changelog
 
+## 0.4.2
+- Updated versioning constraints of Dart SDK and packages.
+- Start of coordinating various components into a coherent workflow.
+- Work on various components and services.
+
 ## 0.4.1
 - Changed components from using Angular's on init to after view init.
 - Added a form type selector component.
