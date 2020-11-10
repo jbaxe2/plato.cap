@@ -1,5 +1,9 @@
 # Plato CAP Summative and Formative Review Changelog
 
+## 0.4.2+1
+- More work on various components and services.
+- Minor refactoring to provide better code consistency.
+
 ## 0.4.2
 - Updated versioning constraints of Dart SDK and packages.
 - Start of coordinating various components into a coherent workflow.

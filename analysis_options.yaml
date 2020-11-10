@@ -12,6 +12,7 @@ include: package:pedantic/analysis_options.yaml
 analyzer:
   exclude: [build/**]
   errors:
+    library_prefixes: ignore
     uri_has_not_been_generated: ignore
   plugins:
     - angular

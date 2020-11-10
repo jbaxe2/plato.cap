@@ -1,10 +1,16 @@
 library plato.cap.components.selector.form;
 
 import 'package:angular/angular.dart';
+import 'package:angular_components/angular_components.dart';
 
 /// The [FormTypeSelectorComponent] class...
 @Component(
-  selector: 'form-type-selector'
+  selector: 'form-type-selector',
+  templateUrl: 'form_type_selector_component.html',
+  directives: [
+    NgModel,
+    MaterialRadioGroupComponent, MaterialRadioComponent
+  ]
 )
 class FormTypeSelectorComponent implements AfterViewInit {
   String selectedFormType;

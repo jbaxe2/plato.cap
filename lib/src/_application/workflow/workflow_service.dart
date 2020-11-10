@@ -1,6 +1,6 @@
 library plato.cap.services.workflow;
 
-import 'dart:async';
+import 'dart:async' show StreamController, Stream;
 
 /// The [WorkflowService] class...
 class WorkflowService {

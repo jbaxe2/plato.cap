@@ -1,6 +1,7 @@
 library plato.cap.components.enrollments;
 
 import 'package:angular/angular.dart';
+import 'package:angular_components/angular_components.dart';
 
 import 'package:plato.cap/src/_application/caching/caching_service.dart';
 import 'package:plato.cap/src/enrollments/enrollment.dart';
@@ -10,6 +11,11 @@ import 'package:plato.cap/src/enrollments/patron_enrollments.dart';
 /// The [EnrollmentsComponent] class...
 @Component(
   selector: 'enrollments',
+  templateUrl: 'enrollments_component.html',
+  directives: [
+    NgIf, NgFor, NgModel,
+    MaterialRadioGroupComponent, MaterialRadioComponent
+  ],
   providers: [CachingService, EnrollmentsService]
 )
 class EnrollmentsComponent implements AfterViewInit {

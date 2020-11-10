@@ -1,7 +1,6 @@
 library plato.cap.submission;
 
 import 'package:plato.cap/src/forms/cap_form.dart';
-
 import 'package:plato.cap/src/users/submission_user/submission_user.dart';
 
 /// The [Submission] class...

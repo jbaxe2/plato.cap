@@ -2,8 +2,8 @@ library plato.cap.components.user.patron.authorization;
 
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
-import 'package:plato.cap/src/_application/caching/caching_service.dart';
 
+import 'package:plato.cap/src/_application/caching/caching_service.dart';
 import 'package:plato.cap/src/_application/progress/progress_service.dart';
 import 'package:plato.cap/src/enrollments/enrollments_service.dart';
 import 'package:plato.cap/src/users/patron/patron_service.dart';

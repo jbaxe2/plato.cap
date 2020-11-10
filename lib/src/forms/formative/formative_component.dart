@@ -11,7 +11,7 @@ import 'package:plato.cap/src/forms/formative/formative.dart';
 )
 class FormativeComponent {
   @Input()
-  FormativeForm formativeForm;
+  FormativeForm form;
 
   /// The [FormativeComponent] constructor...
   FormativeComponent();

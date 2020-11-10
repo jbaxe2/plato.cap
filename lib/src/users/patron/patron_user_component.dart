@@ -1,9 +1,8 @@
 library plato.cap.components.user.patron;
 
 import 'package:angular/angular.dart';
-import 'package:angular_components/angular_components.dart';
-import 'package:plato.cap/src/users/patron/patron_authorization_component.dart';
 
+import 'package:plato.cap/src/users/patron/patron_authorization_component.dart';
 import 'package:plato.cap/src/users/patron/patron_service.dart';
 import 'package:plato.cap/src/users/patron/patron_user.dart';
 
@@ -12,7 +11,7 @@ import 'package:plato.cap/src/users/patron/patron_user.dart';
   selector: 'patron-user',
   templateUrl: 'patron_user_component.html',
   directives: [
-    materialProviders,
+    NgIf,
     PatronAuthorizationComponent
   ],
   providers: [PatronService]

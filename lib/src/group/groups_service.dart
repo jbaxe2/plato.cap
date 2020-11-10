@@ -1,8 +1,8 @@
 library plato.cap.services.groups;
 
 import 'package:http/http.dart' show Client;
-import 'package:plato.cap/src/_application/_utility/functions.dart';
 
+import 'package:plato.cap/src/_application/_utility/functions.dart';
 import 'package:plato.cap/src/group/group.dart';
 import 'package:plato.cap/src/group/groups_factory.dart';
 import 'package:plato.cap/src/group/improper_group.dart';
