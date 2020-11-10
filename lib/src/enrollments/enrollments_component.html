@@ -1,6 +1,10 @@
-<div>
+<div *ngIf="enrollments == null">
+  <p>CAP enrollments have not yet been loaded.</p>
+</div>
+
+<div *ngIf="enrollments != null">
   <p *ngIf="enrollments.enrollments.isEmpty">
-    CAP enrollments have not yet been loaded.
+    No CAP enrollments are available.
   </p>
 
   <div *ngIf="enrollments.enrollments.isNotEmpty">

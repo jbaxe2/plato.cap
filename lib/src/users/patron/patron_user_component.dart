@@ -21,6 +21,8 @@ class PatronUserComponent implements AfterViewInit {
 
   bool get isAuthorized => _patronService.isAuthorized;
 
+  bool get havePatron => null == _patronService.patron;
+
   final PatronService _patronService;
 
   /// The [PatronUserComponent] constructor...

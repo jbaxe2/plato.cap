@@ -1,5 +1,8 @@
 # Plato CAP Summative and Formative Review Changelog
 
+## 0.4.2+2
+- Fixes to allow the application to build.
+
 ## 0.4.2+1
 - More work on various components and services.
 - Minor refactoring to provide better code consistency.

@@ -9,7 +9,7 @@ import 'package:http/browser_client.dart' show BrowserClient;
 
 import 'package:plato.cap/src/plato_cap_component.template.dart' as capNg;
 
-import 'package:plato.cap/main.template.dart' as capMain;
+import 'main.template.dart' as capMain;
 
 @GenerateInjector(
   [ClassProvider (Client, useClass: BrowserClient)]

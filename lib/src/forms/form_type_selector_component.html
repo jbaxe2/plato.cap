@@ -4,7 +4,8 @@
   <material-radio-group
       [ngModel]="selectedFormType"
       (ngModelChange)="formTypeSelected($event)">
-    <material-radio [value]="formative">Formative</material-radio>
-    <material-radio [value]="summative">Summative</material-radio>
+    <material-radio
+      *ngFor="let formType of formTypes"
+      [value]="formType">{{formType}}</material-radio>
   </material-radio-group>
 </div>

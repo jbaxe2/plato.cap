@@ -8,12 +8,14 @@ import 'package:angular_components/angular_components.dart';
   selector: 'form-type-selector',
   templateUrl: 'form_type_selector_component.html',
   directives: [
-    NgModel,
+    NgFor, NgModel,
     MaterialRadioGroupComponent, MaterialRadioComponent
   ]
 )
 class FormTypeSelectorComponent implements AfterViewInit {
   String selectedFormType;
+
+  final List<String> formTypes = ['Formative', 'Summative'];
 
   /// The [FormTypeSelectorComponent] constructor...
   FormTypeSelectorComponent();

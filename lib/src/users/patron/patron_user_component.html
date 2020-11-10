@@ -3,7 +3,7 @@
     <patron-authorization></patron-authorization>
   </div>
 
-  <div *ngIf="isAuthorized">
+  <div *ngIf="isAuthorized && havePatron">
     <p>Welcome, <strong>{{patron.firstName}} {{patron.lastName}}!</strong></p>
   </div>
 </div>
