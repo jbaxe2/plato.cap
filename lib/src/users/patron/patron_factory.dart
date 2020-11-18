@@ -7,11 +7,11 @@ import 'package:plato.cap/src/users/patron/patron_user.dart';
 abstract class PatronFactory {
   /// The [create] method...
   static PatronUser create (Map<String, String> rawPatron) {
-    if (rawPatron.containsKey ('learn.user.username') &&
-        rawPatron.containsKey ('learn.user.firstName') &&
-        rawPatron.containsKey ('learn.user.lastName') &&
-        rawPatron.containsKey ('learn.user.email') &&
-        rawPatron.containsKey ('banner.user.cwid')) {
+    if (!(rawPatron.containsKey ('learn.user.username') &&
+          rawPatron.containsKey ('learn.user.firstName') &&
+          rawPatron.containsKey ('learn.user.lastName') &&
+          rawPatron.containsKey ('learn.user.email') &&
+          rawPatron.containsKey ('banner.user.cwid'))) {
       throw ImproperPatron ('Invalid info to create the patron.');
     }
 

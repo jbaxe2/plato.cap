@@ -1,10 +1,12 @@
 library plato.cap.components.user.patron.authorization;
 
 import 'package:angular/angular.dart';
+
 import 'package:angular_components/angular_components.dart';
 
 import 'package:plato.cap/src/_application/caching/caching_service.dart';
 import 'package:plato.cap/src/_application/progress/progress_service.dart';
+import 'package:plato.cap/src/_application/workflow/workflow_service.dart';
 import 'package:plato.cap/src/enrollments/enrollments_service.dart';
 import 'package:plato.cap/src/users/patron/patron_service.dart';
 
@@ -18,7 +20,8 @@ import 'package:plato.cap/src/users/patron/patron_service.dart';
     MaterialButtonComponent, MaterialIconComponent
   ],
   providers: [
-    CachingService, EnrollmentsService, PatronService, ProgressService
+    CachingService, EnrollmentsService, PatronService, ProgressService,
+    WorkflowService
   ]
 )
 class PatronAuthorizationComponent implements AfterViewInit {
@@ -32,10 +35,12 @@ class PatronAuthorizationComponent implements AfterViewInit {
 
   final ProgressService _progressService;
 
+  final WorkflowService _workflowService;
+
   /// The [PatronAuthorizationComponent] constructor...
   PatronAuthorizationComponent (
     this._patronService, this._enrollmentsService, this._cachingService,
-    this._progressService
+    this._progressService, this._workflowService
   );
 
   /// The [ngAfterViewInit] method...
@@ -49,6 +54,8 @@ class PatronAuthorizationComponent implements AfterViewInit {
 
       if (isAuthorized) {
         await _retrievePatronAndEnrollments();
+
+        _workflowService.markPatronAuthorized();
       }
     } catch (_) {}
 

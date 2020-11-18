@@ -17,7 +17,7 @@ class PatronEnrollments {
 
   /// The [PatronEnrollments] constructor...
   PatronEnrollments (this.patronUser, List<PatronEnrollment> enrollments) {
-    if (!_checkEnrollmentsForPatron()) {
+    if (!_checkEnrollmentsForPatron (enrollments)) {
       throw ImproperEnrollment (
         'One or more of the enrollments users does not match the patron.'
       );
@@ -29,7 +29,9 @@ class PatronEnrollments {
   }
 
   /// The [_checkEnrollmentsForPatron] method...
-  bool _checkEnrollmentsForPatron() => _enrollments.every (
-    (Enrollment enrollment) => enrollment.userId == patronUser.userId
-  );
+  bool _checkEnrollmentsForPatron (List<PatronEnrollment> enrollments) {
+    return enrollments.every (
+     (Enrollment enrollment) => enrollment.userId == patronUser.userId
+    );
+  }
 }

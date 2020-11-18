@@ -1,7 +1,5 @@
 library plato.cap.services.submissions.loader;
 
-import 'dart:async' show Future;
-
 import 'package:http/http.dart' show Client;
 
 /// The [SubmissionsLoaderService] class...

@@ -1,5 +1,10 @@
 # Plato CAP Summative and Formative Review Changelog
 
+## 0.4.3
+- Fixes to resolve various issues during runtime.
+- Work on application workflow.
+- Work on enrollments.
+
 ## 0.4.2+2
 - Fixes to allow the application to build.
 

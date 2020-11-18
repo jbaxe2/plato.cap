@@ -4,9 +4,9 @@ import 'dart:async' show StreamController, Stream;
 
 /// The [WorkflowService] class...
 class WorkflowService {
-  StreamController<bool> _workflowController;
+  StreamController<String> _workflowController;
 
-  Stream<bool> get workflowStream => _workflowController.stream;
+  Stream<String> get workflowStream => _workflowController.stream;
 
   static WorkflowService _instance;
 
@@ -15,15 +15,15 @@ class WorkflowService {
 
   /// The [WorkflowService] private constructor...
   WorkflowService._() {
-    _workflowController = StreamController<bool>.broadcast();
+    _workflowController = StreamController<String>.broadcast();
   }
 
   /// The [markPatronAuthorized] method...
-  void markPatronAuthorized() => _workflowController.add (true);
+  void markPatronAuthorized() => _workflowController.add ('patron.authorized');
 
   /// The [markEnrollmentSelected] method...
-  void markEnrollmentSelected() => _workflowController.add (true);
+  void markEnrollmentSelected() => _workflowController.add ('enrollment.selected');
 
   /// The [markFormTypeSelected] method...
-  void markFormTypeSelected() => _workflowController.add (true);
+  void markFormTypeSelected() => _workflowController.add ('form.type.selected');
 }

@@ -1,6 +1,7 @@
 library plato.crf.components.application.progress;
 
 import 'package:angular/angular.dart';
+
 import 'package:angular_components/angular_components.dart';
 
 import 'package:plato.cap/src/_application/progress/progress_service.dart';

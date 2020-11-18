@@ -122,7 +122,7 @@ class PatronService {
     try {
       var response = await _http.get (_USER_URI);
 
-      Map<String, String> rawPatron = decodeResponse (response);
+      Map<String, String> rawPatron = (decodeResponse (response) as Map)['user'];
 
       _patron = PatronFactory.create (rawPatron);
     } catch (_) {

@@ -8,15 +8,33 @@
     <patron-user></patron-user>
   </material-expansionpanel>
 
-  <material-expansionpanel id="enrollment-panel" disabled>
+  <material-expansionpanel
+      #enrollmentsPanel
+      name="CAP Enrollments"
+      secondaryText="Collection of CAP instructor enrollments"
+      [expanded]="false"
+      [showSaveCancel]="false"
+      disabled>
     <enrollments></enrollments>
   </material-expansionpanel>
 
-  <material-expansionpanel id="form-selector-panel" disabled>
+  <material-expansionpanel
+      #formSelectorPanel
+      name="CAP Form Type Selection"
+      secondaryText="Selecting either Formative or Summative form type to review"
+      [expanded]="false"
+      [showSaveCancel]="false"
+      disabled>
     <form-type-selector></form-type-selector>
   </material-expansionpanel>
 
-  <material-expansionpanel id="submissions-review-panel" disabled>
+  <material-expansionpanel
+      #submissionsReviewPanel
+      name="CAP Forms Review"
+      secondaryText="Review of CAP forms of selected type in the selected course"
+      [expanded]="false"
+      [showSaveCancel]="false"
+      disabled>
     <p>Stuff relating to reviewing the submissions will appear here.</p>
   </material-expansionpanel>
 </div>
