@@ -1,0 +1,29 @@
+@import 'package:angular_components/css/material/material';
+@import 'package:angular_components/material_expansionpanel/mixins';
+@import 'package:angular_components/material_radio/mixins';
+
+.dense {
+  @include expansionpanel-dense-theme;
+}
+
+.extra-info-panel {
+  @include expansionpanel-background-color(#ddd);
+}
+
+:host ::ng-deep header {
+  background-color: #92b0a7;
+  border: 1px solid #474731;
+  font-weight: bold;
+}
+
+@include material-radio-color(
+  $primary-color: #998470
+);
+
+::ng-deep .mat-radio-inner-circle {
+  background-color: #474731;
+}
+
+::ng-deep .mat-radio-checked .mat-radio-outer-circle {
+  border-color: #474731;
+}

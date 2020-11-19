@@ -1,14 +1,17 @@
 <div *ngIf="enrollments == null">
-  <p>CAP enrollments have not yet been loaded.</p>
+  <p>The CAP course enrollments have not yet been loaded.</p>
 </div>
 
 <div *ngIf="enrollments != null">
   <p *ngIf="enrollments.enrollments.isEmpty">
-    No CAP enrollments are available.
+    No CAP course enrollments are available.
   </p>
 
   <div *ngIf="enrollments.enrollments.isNotEmpty">
-    <p>Please select a CAP enrollment to review the forms.</p>
+    <p>
+      Please select a <strong>CAP course enrollment</strong> to review the form
+      submissions.
+    </p>
 
     <material-radio-group
         [ngModel]="selectedEnrollment"
@@ -16,7 +19,7 @@
       <span *ngFor="let enrollment of enrollments.enrollments">
         <material-radio [value]="enrollment">
           {{enrollment.courseName}}
-        </material-radio>
+        </material-radio><br>
       </span>
     </material-radio-group>
   </div>

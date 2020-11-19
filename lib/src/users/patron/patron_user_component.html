@@ -4,6 +4,12 @@
   </div>
 
   <div *ngIf="isAuthorized && havePatron">
-    <p>Welcome, <strong>{{patron.firstName}} {{patron.lastName}}!</strong></p>
+    <p>
+      Welcome, <strong>{{patron.firstName}} {{patron.lastName}}</strong>!<br><br>
+      This application will allow you to review <strong>Summative</strong> and
+      <strong>Formative</strong> form submissions from the CAP courses.  Now
+      that you have authorized your Plato account, see below for selecting one
+      of your CAP course enrollments.
+    </p>
   </div>
 </div>

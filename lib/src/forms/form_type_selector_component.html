@@ -1,11 +1,14 @@
 <div>
-  <p>Please select a form type to review.</p>
+  <p>
+    Please select a <strong>form type</strong> to review the submissions from
+    the above selected CAP course enrollment.
+  </p>
 
   <material-radio-group
       [ngModel]="selectedFormType"
       (ngModelChange)="formTypeSelected($event)">
-    <material-radio
-      *ngFor="let formType of formTypes"
-      [value]="formType">{{formType}}</material-radio>
+    <span *ngFor="let formType of formTypes">
+      <material-radio [value]="formType">{{formType}}</material-radio><br>
+    </span>
   </material-radio-group>
 </div>

@@ -14,6 +14,7 @@ import 'package:plato.cap/src/users/patron/patron_user_component.dart';
 @Component(
   selector: 'workflow',
   templateUrl: 'workflow_component.html',
+  styleUrls: ['workflow_component.css'],
   directives: [
     MaterialExpansionPanel,
     PatronUserComponent, EnrollmentsComponent, FormTypeSelectorComponent

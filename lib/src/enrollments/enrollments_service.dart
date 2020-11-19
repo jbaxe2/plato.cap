@@ -1,5 +1,7 @@
 library plato.cap.services.enrollments;
 
+import 'dart:async' show StreamController, Stream;
+
 import 'package:http/http.dart' show Client;
 
 import 'package:plato.cap/src/_application/_utility/functions.dart';
@@ -15,6 +17,11 @@ class EnrollmentsService {
   PatronEnrollments _enrollments;
 
   PatronEnrollments get enrollments => _enrollments;
+
+  static final StreamController<PatronEnrollments> _enrollmentsController =
+    StreamController<PatronEnrollments>.broadcast();
+
+  Stream<PatronEnrollments> get enrollmentsStream => _enrollmentsController.stream;
 
   final Client _http;
 
@@ -38,6 +45,8 @@ class EnrollmentsService {
       _enrollments = PatronEnrollments (
         patron, EnrollmentsFactory.createForPatron (rawEnrollments)
       );
+
+      _enrollmentsController.add (_enrollments);
     } catch (_) {
       throw ImproperEnrollment ('Unable to retrieve the enrollments.');
     }

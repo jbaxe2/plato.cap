@@ -1,5 +1,12 @@
 # Plato CAP Summative and Formative Review Changelog
 
+## 0.4.4
+- More work on enrollments component and related code.
+- Work on form selector component.
+- More work on application workflow.
+- Played with some coloring options.
+- Fleshed out some application instructions.
+
 ## 0.4.3
 - Fixes to resolve various issues during runtime.
 - Work on application workflow.
