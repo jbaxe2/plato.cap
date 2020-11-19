@@ -1,7 +1,7 @@
 library plato.cap.factories.groups;
 
-import 'package:plato.cap/src/group/group.dart';
-import 'package:plato.cap/src/group/improper_group.dart';
+import 'package:plato.cap/src/groups/group.dart';
+import 'package:plato.cap/src/groups/improper_group.dart';
 
 /// The [GroupsFactory] class...
 abstract class GroupsFactory {

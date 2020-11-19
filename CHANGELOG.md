@@ -1,5 +1,8 @@
 # Plato CAP Summative and Formative Review Changelog
 
+## 0.5.0
+- Start of working on the submissions review component.
+
 ## 0.4.4
 - More work on enrollments component and related code.
 - Work on form selector component.

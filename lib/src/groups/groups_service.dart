@@ -3,9 +3,9 @@ library plato.cap.services.groups;
 import 'package:http/http.dart' show Client;
 
 import 'package:plato.cap/src/_application/_utility/functions.dart';
-import 'package:plato.cap/src/group/group.dart';
-import 'package:plato.cap/src/group/groups_factory.dart';
-import 'package:plato.cap/src/group/improper_group.dart';
+import 'package:plato.cap/src/groups/group.dart';
+import 'package:plato.cap/src/groups/groups_factory.dart';
+import 'package:plato.cap/src/groups/improper_group.dart';
 
 const String _GROUPS_URI = '/plato/retrieve/groups';
 
@@ -38,4 +38,8 @@ class GroupsService {
       throw ImproperGroup ('Unable to retrieve the groups for the course.');
     }
   }
+
+  /// The [getGroupsForCourse] method...
+  List<Group> getGroupsForCourse (String courseId) =>
+    List<Group>.from (_groups[courseId]);
 }

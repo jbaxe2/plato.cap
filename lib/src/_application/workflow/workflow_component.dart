@@ -8,6 +8,7 @@ import 'package:plato.cap/src/_application/caching/caching_service.dart';
 import 'package:plato.cap/src/_application/workflow/workflow_service.dart';
 import 'package:plato.cap/src/enrollments/enrollments_component.dart';
 import 'package:plato.cap/src/forms/form_type_selector_component.dart';
+import 'package:plato.cap/src/submissions/review/submissions_review_component.dart';
 import 'package:plato.cap/src/users/patron/patron_user_component.dart';
 
 /// The [WorkflowComponent] class...
@@ -17,7 +18,8 @@ import 'package:plato.cap/src/users/patron/patron_user_component.dart';
   styleUrls: ['workflow_component.css'],
   directives: [
     MaterialExpansionPanel,
-    PatronUserComponent, EnrollmentsComponent, FormTypeSelectorComponent
+    PatronUserComponent, EnrollmentsComponent, FormTypeSelectorComponent,
+    SubmissionsReviewComponent
   ],
   providers: [CachingService, WorkflowService]
 )

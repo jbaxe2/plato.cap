@@ -1,5 +1,7 @@
 library plato.cap.components.enrollments;
 
+import 'dart:html' show window;
+
 import 'package:angular/angular.dart';
 
 import 'package:angular_components/angular_components.dart';
@@ -42,7 +44,7 @@ class EnrollmentsComponent implements AfterViewInit {
   @override
   void ngAfterViewInit() {
     _enrollmentsService.enrollmentsStream.listen (
-      (PatronEnrollments enrollments) => _enrollments = enrollments
+      (PatronEnrollments enrollments) => (_enrollments = enrollments)
     );
 
     _checkForCachedEnrollment();
@@ -51,7 +53,7 @@ class EnrollmentsComponent implements AfterViewInit {
   /// The [enrollmentSelected] method...
   void enrollmentSelected (PatronEnrollment enrollment) {
     _cachingService.cacheObject (
-      'selectedEnrollment', selectedEnrollment = enrollment
+      'selectedEnrollment', (selectedEnrollment = enrollment)
     );
 
     _workflowService.markEnrollmentSelected();
