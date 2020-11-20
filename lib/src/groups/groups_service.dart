@@ -28,14 +28,14 @@ class GroupsService {
   /// The [loadGroupsForCourse] method...
   Future<void> loadGroupsForCourse (String courseId) async {
     try {
-      var response = _http.get (_GROUPS_URI);
+      var response = await _http.get ('$_GROUPS_URI?course=$courseId');
 
       List<Map<String, String>> rawGroups =
-        decodeResponse ((response as Map)['groups']);
+        (decodeResponse (response) as Map)['groups'];
 
       _groups[courseId] = GroupsFactory.createGroups (rawGroups);
     } catch (_) {
-      throw ImproperGroup ('Unable to retrieve the groups for the course.');
+      throw ImproperGroup ('Unable to retrieve the groups for the course.\n${_.toString()}');
     }
   }
 
