@@ -18,7 +18,7 @@ abstract class GroupsFactory {
 
   /// The [createGroup] static method...
   static Group createGroup (Map<String, String> rawGroup) {
-    if (GroupsFactory._checkGroupInfo (rawGroup)) {
+    if (!GroupsFactory._checkGroupInfo (rawGroup)) {
       throw ImproperGroup ('Invalid info to create the group.');
     }
 

@@ -16,5 +16,7 @@ class SubmissionsLoaderService {
   SubmissionsLoaderService._ (this._http);
 
   /// The [loadSubmissions] method...
-  Future<void> loadSubmissions (String courseId, String formType) async {}
+  Future<void> loadSubmissions (
+    String courseId, String formType, List<String> userIds
+  ) async {}
 }

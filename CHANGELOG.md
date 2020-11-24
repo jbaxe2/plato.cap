@@ -1,5 +1,8 @@
 # Plato CAP Summative and Formative Review Changelog
 
+## 0.5.0+1
+- Work on groups for submissions review component.
+
 ## 0.5.0
 - Start of working on the submissions review component.
 

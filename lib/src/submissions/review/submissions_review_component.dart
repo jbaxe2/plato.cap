@@ -40,7 +40,9 @@ class SubmissionsReviewComponent implements AfterViewInit {
       if ('submissions.reviewable' == workflowEvent) {
         _loadCachedConditions();
 
-        await _loadCourseGroups();
+        if (!_groupsService.haveGroupsForCourse (_enrollment.courseId)) {
+          await _loadCourseGroups();
+        }
       }
     });
   }
