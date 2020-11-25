@@ -1,5 +1,7 @@
 library plato.cap.enrollment;
 
+import 'package:plato.cap/src/users/submission_user/submission_user.dart';
+
 /// The [Enrollment] abstract class...
 abstract class Enrollment {
   final String courseId;
@@ -27,7 +29,12 @@ class PatronEnrollment extends Enrollment {
 
 /// The [RosterEnrollment] class...
 class RosterEnrollment extends Enrollment {
+  final String id;
+
+  final SubmissionUser submissionUser;
+
   RosterEnrollment (
-    String courseId, String courseName, String userId, bool available
+    String courseId, String courseName, String userId, bool available,
+    this.id, this.submissionUser
   ) : super (courseId, courseName, userId, 'Student', available);
 }

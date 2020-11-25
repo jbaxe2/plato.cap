@@ -2,6 +2,7 @@ library plato.cap.factories.enrollments;
 
 import 'package:plato.cap/src/enrollments/enrollment.dart';
 import 'package:plato.cap/src/enrollments/improper_enrollment.dart';
+import 'package:plato.cap/src/users/submission_user/submission_user_factory.dart';
 
 /// The [EnrollmentsFactory] class...
 abstract class EnrollmentsFactory {
@@ -11,16 +12,16 @@ abstract class EnrollmentsFactory {
   ) {
     var enrollments = <PatronEnrollment>[];
 
-    rawEnrollments.forEach ((rawEnrollment) => enrollments.add (
-      EnrollmentsFactory.createPatronEnrollment (rawEnrollment)
-    ));
+    rawEnrollments.forEach (
+      (rawEnrollment) => enrollments.add (createPatronEnrollment (rawEnrollment))
+    );
 
     return enrollments;
   }
 
   /// The [createPatronEnrollment] static method...
   static PatronEnrollment createPatronEnrollment (Map<String, String> rawEnrollment) {
-    if (!EnrollmentsFactory._checkRawEnrollmentInfo (rawEnrollment)) {
+    if (!_checkRawEnrollmentInfo (rawEnrollment)) {
       throw ImproperEnrollment ('Invalid info to create the patron enrollment.');
     }
 
@@ -37,9 +38,9 @@ abstract class EnrollmentsFactory {
   ) {
     var enrollments = <RosterEnrollment>[];
 
-    rawEnrollments.forEach ((rawEnrollment) => enrollments.add (
-      EnrollmentsFactory.createRosterEnrollment (rawEnrollment)
-    ));
+    rawEnrollments.forEach (
+      (rawEnrollment) => enrollments.add (createRosterEnrollment (rawEnrollment))
+    );
 
     return enrollments;
   }
@@ -48,14 +49,16 @@ abstract class EnrollmentsFactory {
   static RosterEnrollment createRosterEnrollment (
     Map<String, String> rawEnrollment
   ) {
-    if (!EnrollmentsFactory._checkRawEnrollmentInfo (rawEnrollment)) {
+    if (!_checkRawEnrollmentInfo (rawEnrollment)) {
       throw ImproperEnrollment ('Invalid info to create the roster enrollment.');
     }
 
     return RosterEnrollment (
       rawEnrollment['learn.course.id'], rawEnrollment['learn.course.name'],
       rawEnrollment['banner.user.cwid'],
-      ('true' == rawEnrollment['learn.membership.available'])
+      ('true' == rawEnrollment['learn.membership.available']),
+      rawEnrollment['learn.membership.id'],
+      SubmissionUserFactory.create (rawEnrollment)
     );
   }
 

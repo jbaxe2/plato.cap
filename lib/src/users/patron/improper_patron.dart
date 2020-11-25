@@ -1,4 +1,4 @@
-library plato.cap.improper.patron;
+library plato.cap.improper.user.patron;
 
 import 'package:plato.cap/src/_application/error/plato_exception.dart';
 

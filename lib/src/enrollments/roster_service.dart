@@ -23,7 +23,9 @@ class RosterService {
   factory RosterService (Client http) => _instance ?? RosterService._ (http);
 
   /// The [RosterService] private constructor...
-  RosterService._ (this._http);
+  RosterService._ (this._http) {
+    _rosters = <String, Roster>{};
+  }
 
   /// The [loadRosterForCourse] method...
   Future<void> loadRosterForCourse (String courseId) async {
@@ -32,14 +34,14 @@ class RosterService {
     }
 
     try {
-      var response = await _http.get (_ROSTER_URI);
+      var response = await _http.get ('$_ROSTER_URI?course=$courseId');
 
       List<Map<String, String>> rawRoster =
         (decodeResponse (response) as Map)['roster'];
 
       _rosters[courseId] = RosterFactory.create (courseId, rawRoster);
     } catch (_) {
-      throw ImproperRoster ('Unable to retrieve the course roster.');
+      throw ImproperRoster ('Unable to retrieve the course roster.\n${_.toString()}');
     }
   }
 
@@ -51,4 +53,7 @@ class RosterService {
 
     return _rosters[courseId];
   }
+
+  /// The [haveRosterForCourse] method...
+  bool haveRosterForCourse (String courseId) => _rosters.containsKey (courseId);
 }
