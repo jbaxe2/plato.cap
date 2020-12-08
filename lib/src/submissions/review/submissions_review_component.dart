@@ -8,13 +8,17 @@ import 'package:plato.cap/src/_application/workflow/workflow_service.dart';
 import 'package:plato.cap/src/enrollments/enrollment.dart';
 import 'package:plato.cap/src/enrollments/roster_service.dart';
 import 'package:plato.cap/src/groups/groups_service.dart';
+import 'package:plato.cap/src/groups/triad_student_determinator_service.dart';
+import 'package:plato.cap/src/submissions/submissions_loader_service.dart';
 
 /// The [SubmissionsReviewComponent] class...
 @Component(
   selector: 'submissions-review',
   templateUrl: 'submissions_review_component.html',
   providers: [
-    CachingService, GroupsService, ProgressService, RosterService, WorkflowService
+    CachingService, GroupsService, ProgressService, RosterService,
+    SubmissionsLoaderService,  TriadStudentDeterminatorService,
+    WorkflowService
   ]
 )
 class SubmissionsReviewComponent implements AfterViewInit {
@@ -30,12 +34,17 @@ class SubmissionsReviewComponent implements AfterViewInit {
 
   final RosterService _rosterService;
 
+  final SubmissionsLoaderService _submissionsLoaderService;
+
+  final TriadStudentDeterminatorService _studentDeterminatorService;
+
   final WorkflowService _workflowService;
 
   /// The [SubmissionsReviewComponent] constructor...
   SubmissionsReviewComponent (
     this._cachingService, this._groupsService, this._progressService,
-    this._rosterService, this._workflowService
+    this._rosterService, this._submissionsLoaderService,
+    this._studentDeterminatorService, this._workflowService
   );
 
   /// The [ngAfterViewInit] method...
@@ -52,6 +61,8 @@ class SubmissionsReviewComponent implements AfterViewInit {
         if (!_groupsService.haveGroupsForCourse (_enrollment.courseId)) {
           await _loadCourseGroups();
         }
+
+        await _loadFormSubmissions();
       }
     });
   }
@@ -83,9 +94,48 @@ class SubmissionsReviewComponent implements AfterViewInit {
     try {
       _progressService.invoke ('Loading groups for the CAP course.');
 
-      await _groupsService.loadGroupsForCourse (_enrollment.courseId);
+      await _groupsService.loadGroupInfoForCourse (_enrollment.courseId);
     } catch (_) {}
 
     _progressService.revoke();
+  }
+
+  /// The [_loadFormSubmissions] method...
+  Future<void> _loadFormSubmissions() async {
+    _progressService.invoke ('Loading CAP form submissions.');
+
+    try {
+      await _submissionsLoaderService.loadSubmissions (
+        _enrollment.courseId, _formType, await _determineTriadStudentsForCourse()
+      );
+    } catch (_) {}
+
+    _progressService.revoke();
+  }
+
+  /// The [_determineTriadStudentsForCourse] method...
+  Future<List<String>> _determineTriadStudentsForCourse() async {
+    _progressService.invoke ('Determining specific triad student users.');
+
+    var haveTriadStudents =
+      _studentDeterminatorService.haveTriadStudentsForCourse (_enrollment.courseId);
+
+    var triadStudents = <String>[];
+
+    if (haveTriadStudents) {
+      triadStudents = _studentDeterminatorService.getTriadStudentsForCourse (
+        _enrollment.courseId
+      );
+    } else {
+      triadStudents = _studentDeterminatorService.determineTriadStudents (
+        await _rosterService.getRosterForCourse (_enrollment.courseId),
+        _groupsService.getGroupSetsForCourse (_enrollment.courseId),
+        _groupsService.getGroupsForCourse (_enrollment.courseId)
+      );
+    }
+
+    _progressService.revoke();
+
+    return triadStudents;
   }
 }

@@ -1,5 +1,11 @@
 # Plato CAP Summative and Formative Review Changelog
 
+## 0.5.2
+- Created a triad student determinator service, to slim down which students' form
+submissions should be retrieved.
+- Minor refactoring.
+- Work on submissions loader service.
+
 ## 0.5.1
 - Work on enrollments, submission users, and rosters.
 

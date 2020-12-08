@@ -1,7 +1,5 @@
 library plato.cap.components.enrollments;
 
-import 'dart:html' show window;
-
 import 'package:angular/angular.dart';
 
 import 'package:angular_components/angular_components.dart';

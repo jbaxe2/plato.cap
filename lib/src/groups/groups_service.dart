@@ -22,7 +22,8 @@ class GroupsService {
   static GroupsService _instance;
 
   /// The [GroupsService] factory constructor...
-  factory GroupsService (Client http) => _instance ?? GroupsService._ (http);
+  factory GroupsService (Client http) =>
+    _instance ?? (_instance = GroupsService._ (http));
 
   /// The [GroupsService] private constructor...
   GroupsService._ (this._http) {
@@ -31,8 +32,8 @@ class GroupsService {
     _groupMembers = <Group, List<String>>{};
   }
 
-  /// The [loadGroupsForCourse] method...
-  Future<void> loadGroupsForCourse (String courseId) async {
+  /// The [loadGroupInfoForCourse] method...
+  Future<void> loadGroupInfoForCourse (String courseId) async {
     try {
       var response = await _http.get ('$_GROUPS_URI?course=$courseId');
 

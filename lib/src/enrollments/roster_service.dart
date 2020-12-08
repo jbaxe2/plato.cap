@@ -20,7 +20,8 @@ class RosterService {
   static RosterService _instance;
 
   /// The [RosterService] factory constructor...
-  factory RosterService (Client http) => _instance ?? RosterService._ (http);
+  factory RosterService (Client http) =>
+    _instance ?? (_instance = RosterService._ (http));
 
   /// The [RosterService] private constructor...
   RosterService._ (this._http) {
@@ -41,7 +42,7 @@ class RosterService {
 
       _rosters[courseId] = RosterFactory.create (courseId, rawRoster);
     } catch (_) {
-      throw ImproperRoster ('Unable to retrieve the course roster.\n${_.toString()}');
+      throw ImproperRoster ('Unable to retrieve the course roster.');
     }
   }
 

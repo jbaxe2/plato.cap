@@ -29,7 +29,7 @@ class EnrollmentsService {
 
   /// The [EnrollmentsService] factory constructor...
   factory EnrollmentsService (Client http) =>
-    _instance ?? EnrollmentsService._ (http);
+    _instance ?? (_instance = EnrollmentsService._ (http));
 
   /// The [EnrollmentsService] private constructor...
   EnrollmentsService._ (this._http);
