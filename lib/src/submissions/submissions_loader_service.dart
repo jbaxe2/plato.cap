@@ -1,6 +1,7 @@
 library plato.cap.services.submissions.loader;
 
 import 'package:http/http.dart' show Client;
+
 import 'package:plato.cap/src/forms/cap_form.dart';
 import 'package:plato.cap/src/forms/improper_cap_form.dart';
 
@@ -23,9 +24,9 @@ class SubmissionsLoaderService {
     _submissions = <String, List<CapForm>>{};
   }
 
-  /// The [loadSubmissions] method...
-  Future<void> loadSubmissions (
-    String courseId, String formType, List<String> userIds
+  /// The [loadSubmissionsForCourseUsers] method...
+  Future<void> loadSubmissionsForCourseUsers (
+    String courseId, List<String> userIds, String formType
   ) async {
     if (_submissions.containsKey (courseId)) {
       return;
@@ -33,7 +34,7 @@ class SubmissionsLoaderService {
 
     try {
       var response = _http.get (
-        '$_LOADER_URI?course=$courseId&type=$formType&userIds=${userIds.join (',')}'
+        '$_LOADER_URI?course=$courseId&relative=$formType&userIds=${userIds.join (',')}'
       );
     } catch (_) {
       throw ImproperCapForm ();

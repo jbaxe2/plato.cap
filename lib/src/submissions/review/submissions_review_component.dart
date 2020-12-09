@@ -105,16 +105,16 @@ class SubmissionsReviewComponent implements AfterViewInit {
     _progressService.invoke ('Loading CAP form submissions.');
 
     try {
-      await _submissionsLoaderService.loadSubmissions (
-        _enrollment.courseId, _formType, await _determineTriadStudentsForCourse()
+      await _submissionsLoaderService.loadSubmissionsForCourseUsers (
+        _enrollment.courseId, await _determineTriadStudents(), _formType
       );
     } catch (_) {}
 
     _progressService.revoke();
   }
 
-  /// The [_determineTriadStudentsForCourse] method...
-  Future<List<String>> _determineTriadStudentsForCourse() async {
+  /// The [_determineTriadStudents] method...
+  Future<List<String>> _determineTriadStudents() async {
     _progressService.invoke ('Determining specific triad student users.');
 
     var haveTriadStudents =
