@@ -1,5 +1,8 @@
 # Plato CAP Summative and Formative Review Changelog
 
+## 0.5.2+2
+- Minor refactoring.
+
 ## 0.5.2+1
 - Minor refactoring.
 

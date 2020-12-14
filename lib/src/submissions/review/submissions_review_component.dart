@@ -106,7 +106,9 @@ class SubmissionsReviewComponent implements AfterViewInit {
 
     try {
       await _submissionsLoaderService.loadSubmissionsForCourseUsers (
-        _enrollment.courseId, await _determineTriadStudents(), _formType
+        _enrollment.courseId,
+        await _determineTriadStudents(),
+        _formType.toLowerCase()
       );
     } catch (_) {}
 
